@@ -31,8 +31,4 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <finalName>TubeTils</finalName>
-    </build>
-
 </project>
