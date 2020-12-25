@@ -16,7 +16,7 @@ public class TubeTils extends JavaPlugin {
     public void onEnable() {
         ccs.sendMessage(TubeTils.getData().getPrefix() + "The Plugin will be activated ...");
 
-        setInstnaces();
+        setInstances();
 
         ccs.sendMessage(TubeTils.getData().getPrefix() + "The plugin was successfully activated!");
     }
@@ -28,7 +28,7 @@ public class TubeTils extends JavaPlugin {
         ccs.sendMessage(TubeTils.getData().getPrefix() + "The plugin was successfully deactivated!");
     }
 
-    private void setInstnaces() {
+    private void setInstances() {
         ccs.sendMessage(TubeTils.getData().getPrefix() + "Set Instances ...");
 
         instance = this;
@@ -46,8 +46,10 @@ public class TubeTils extends JavaPlugin {
 
 
 
-
-
+    /**
+     * TubeTils API Properties for Developer
+     */
+    @SuppressWarnings("unused")
     public static class Properties {
 
         private static final Data data = TubeTils.getData();
