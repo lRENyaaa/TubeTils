@@ -6,7 +6,7 @@
 
     <groupId>de.tubeof</groupId>
     <artifactId>TubeTils</artifactId>
-    <version>SNAPSHOT-000</version>
+    <version>SNAPSHOT-XXX</version>
     <packaging>jar</packaging>
 
     <properties>
