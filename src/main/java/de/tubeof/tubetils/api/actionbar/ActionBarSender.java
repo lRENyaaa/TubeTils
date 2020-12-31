@@ -30,7 +30,6 @@ public class ActionBarSender {
         if (nmsver.equalsIgnoreCase("v1_8_R1") || nmsver.startsWith("v1_7_")) {
             useOldMethods = true;
         }
-
     }
 
     private void sendActionBar(Player player, String message) {
