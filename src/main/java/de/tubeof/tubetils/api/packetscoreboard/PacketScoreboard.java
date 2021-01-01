@@ -3,8 +3,11 @@ package de.tubeof.tubetils.api.packetscoreboard;
 import de.tubeof.tubetils.api.packetscoreboard.events.PacketScoreboardDeleteEvent;
 import de.tubeof.tubetils.api.packetscoreboard.events.PacketScoreboardSendEvent;
 import de.tubeof.tubetils.api.packetscoreboard.events.PacketScoreboardUpdateEvent;
+import de.tubeof.tubetils.data.Data;
+import de.tubeof.tubetils.main.TubeTils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Array;
@@ -92,6 +95,8 @@ public class PacketScoreboard {
         }
     }
 
+    private final Data data = TubeTils.getData();
+    private final ConsoleCommandSender ccs = Bukkit.getConsoleSender();
     private final Player player;
     private final String id;
 
@@ -105,7 +110,9 @@ public class PacketScoreboard {
      *
      * @param player the player the scoreboard is for
      */
-    public PacketScoreboard(Player player) {
+    public PacketScoreboard(String packetScoreboardName, Player player) {
+        if (data.isDebuggingEnabled()) ccs.sendMessage(data.getPrefix() + "Created new PacketScoreboard with name: " + packetScoreboardName);
+
         this.player = Objects.requireNonNull(player, "player");
 
         id = "fb-" + Double.toString(Math.random()).substring(2, 10);

@@ -20,8 +20,7 @@ public class ActionBarSender {
     private Boolean useOldMethods = false;
 
     public ActionBarSender(String actionBarSenderName) {
-        if (data.isDebuggingEnabled())
-            ccs.sendMessage(data.getPrefix() + "Created new ActionBarSender with name: " + actionBarSenderName);
+        if (data.isDebuggingEnabled()) ccs.sendMessage(data.getPrefix() + "Created new ActionBarSender with name: " + actionBarSenderName);
 
         nmsver = Bukkit.getServer().getClass().getPackage().getName();
         nmsver = nmsver.substring(nmsver.lastIndexOf(".") + 1);
