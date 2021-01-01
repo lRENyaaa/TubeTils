@@ -38,43 +38,43 @@ public class PacketScoreboard {
 
     static {
         try {
-            if (ScoreboardReflection.nmsOptionalClass("ScoreboardServer$Action").isPresent()) {
+            if (PacketScoreboardReflection.nmsOptionalClass("ScoreboardServer$Action").isPresent()) {
                 VERSION_TYPE = VersionType.V1_13;
-            } else if (ScoreboardReflection.nmsOptionalClass("IScoreboardCriteria$EnumScoreboardHealthDisplay").isPresent()) {
+            } else if (PacketScoreboardReflection.nmsOptionalClass("IScoreboardCriteria$EnumScoreboardHealthDisplay").isPresent()) {
                 VERSION_TYPE = VersionType.V1_8;
             } else {
                 VERSION_TYPE = VersionType.V1_7;
             }
 
-            Class<?> craftChatMessageClass = ScoreboardReflection.obcClass("util.CraftChatMessage");
-            Class<?> entityPlayerClass = ScoreboardReflection.nmsClass("EntityPlayer");
-            Class<?> playerConnectionClass = ScoreboardReflection.nmsClass("PlayerConnection");
-            Class<?> craftPlayerClass = ScoreboardReflection.obcClass("entity.CraftPlayer");
+            Class<?> craftChatMessageClass = PacketScoreboardReflection.obcClass("util.CraftChatMessage");
+            Class<?> entityPlayerClass = PacketScoreboardReflection.nmsClass("EntityPlayer");
+            Class<?> playerConnectionClass = PacketScoreboardReflection.nmsClass("PlayerConnection");
+            Class<?> craftPlayerClass = PacketScoreboardReflection.obcClass("entity.CraftPlayer");
 
             MESSAGE_FROM_STRING = craftChatMessageClass.getDeclaredMethod("fromString", String.class);
-            CHAT_COMPONENT_CLASS = ScoreboardReflection.nmsClass("IChatBaseComponent");
+            CHAT_COMPONENT_CLASS = PacketScoreboardReflection.nmsClass("IChatBaseComponent");
 
             PLAYER_GET_HANDLE = craftPlayerClass.getDeclaredMethod("getHandle");
             PLAYER_CONNECTION = entityPlayerClass.getDeclaredField("playerConnection");
-            SEND_PACKET = playerConnectionClass.getDeclaredMethod("sendPacket", ScoreboardReflection.nmsClass("Packet"));
+            SEND_PACKET = playerConnectionClass.getDeclaredMethod("sendPacket", PacketScoreboardReflection.nmsClass("Packet"));
 
-            PACKET_SB_OBJ = ScoreboardReflection.nmsClass("PacketPlayOutScoreboardObjective").getConstructor();
-            PACKET_SB_DISPLAY_OBJ = ScoreboardReflection.nmsClass("PacketPlayOutScoreboardDisplayObjective").getConstructor();
-            PACKET_SB_SCORE = ScoreboardReflection.nmsClass("PacketPlayOutScoreboardScore").getConstructor();
-            PACKET_SB_TEAM = ScoreboardReflection.nmsClass("PacketPlayOutScoreboardTeam").getConstructor();
+            PACKET_SB_OBJ = PacketScoreboardReflection.nmsClass("PacketPlayOutScoreboardObjective").getConstructor();
+            PACKET_SB_DISPLAY_OBJ = PacketScoreboardReflection.nmsClass("PacketPlayOutScoreboardDisplayObjective").getConstructor();
+            PACKET_SB_SCORE = PacketScoreboardReflection.nmsClass("PacketPlayOutScoreboardScore").getConstructor();
+            PACKET_SB_TEAM = PacketScoreboardReflection.nmsClass("PacketPlayOutScoreboardTeam").getConstructor();
 
             if (VersionType.V1_8.isHigherOrEqual()) {
-                ENUM_SB_HEALTH_DISPLAY = ScoreboardReflection.nmsClass("IScoreboardCriteria$EnumScoreboardHealthDisplay");
+                ENUM_SB_HEALTH_DISPLAY = PacketScoreboardReflection.nmsClass("IScoreboardCriteria$EnumScoreboardHealthDisplay");
 
                 if (VersionType.V1_13.isHigherOrEqual()) {
-                    ENUM_SB_ACTION = ScoreboardReflection.nmsClass("ScoreboardServer$Action");
+                    ENUM_SB_ACTION = PacketScoreboardReflection.nmsClass("ScoreboardServer$Action");
                 } else {
-                    ENUM_SB_ACTION = ScoreboardReflection.nmsClass("PacketPlayOutScoreboardScore$EnumScoreboardAction");
+                    ENUM_SB_ACTION = PacketScoreboardReflection.nmsClass("PacketPlayOutScoreboardScore$EnumScoreboardAction");
                 }
 
-                ENUM_SB_HEALTH_DISPLAY_INTEGER = ScoreboardReflection.enumValueOf(ENUM_SB_HEALTH_DISPLAY, "INTEGER");
-                ENUM_SB_ACTION_CHANGE = ScoreboardReflection.enumValueOf(ENUM_SB_ACTION, "CHANGE");
-                ENUM_SB_ACTION_REMOVE = ScoreboardReflection.enumValueOf(ENUM_SB_ACTION, "REMOVE");
+                ENUM_SB_HEALTH_DISPLAY_INTEGER = PacketScoreboardReflection.enumValueOf(ENUM_SB_HEALTH_DISPLAY, "INTEGER");
+                ENUM_SB_ACTION_CHANGE = PacketScoreboardReflection.enumValueOf(ENUM_SB_ACTION, "CHANGE");
+                ENUM_SB_ACTION_REMOVE = PacketScoreboardReflection.enumValueOf(ENUM_SB_ACTION, "REMOVE");
             } else {
                 ENUM_SB_HEALTH_DISPLAY = null;
                 ENUM_SB_ACTION = null;

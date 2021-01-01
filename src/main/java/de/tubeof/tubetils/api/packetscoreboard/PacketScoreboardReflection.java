@@ -6,14 +6,14 @@ import java.util.Locale;
 import java.util.Optional;
 
 @SuppressWarnings("ALL")
-public class ScoreboardReflection {
+public class PacketScoreboardReflection {
 
     public static final String OBC_PACKAGE = "org.bukkit.craftbukkit";
     public static final String NMS_PACKAGE = "net.minecraft.server";
 
     public static final String VERSION = Bukkit.getServer().getClass().getPackage().getName().substring(OBC_PACKAGE.length() + 1);
 
-    private ScoreboardReflection() {
+    private PacketScoreboardReflection() {
         throw new UnsupportedOperationException();
     }
 
