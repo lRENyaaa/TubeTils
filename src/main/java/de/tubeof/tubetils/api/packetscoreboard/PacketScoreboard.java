@@ -1,6 +1,7 @@
 package de.tubeof.tubetils.api.packetscoreboard;
 
 import de.tubeof.tubetils.api.packetscoreboard.events.PacketScoreboardDeleteEvent;
+import de.tubeof.tubetils.api.packetscoreboard.events.PacketScoreboardSendEvent;
 import de.tubeof.tubetils.api.packetscoreboard.events.PacketScoreboardUpdateEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -290,6 +291,9 @@ public class PacketScoreboard {
             for (int i = 0; i < linesSize; i++) {
                 if (!Objects.equals(getLineByScore(oldLines, i), getLineByScore(i))) {
                     sendTeamPacket(i, TeamMode.UPDATE);
+
+                    PacketScoreboardUpdateEvent packetScoreboardUpdateEvent = new PacketScoreboardUpdateEvent(this.player);
+                    Bukkit.getPluginManager().callEvent(packetScoreboardUpdateEvent);
                 }
             }
         } catch (ReflectiveOperationException e) {
@@ -492,6 +496,10 @@ public class PacketScoreboard {
         }
 
         if (player.isOnline()) {
+            PacketScoreboardSendEvent packetScoreboardSendEvent = new PacketScoreboardSendEvent(this.player);
+            Bukkit.getPluginManager().callEvent(packetScoreboardSendEvent);
+            if(packetScoreboardSendEvent.isCancelled()) return;
+
             Object entityPlayer = PLAYER_GET_HANDLE.invoke(player);
             Object playerConnection = PLAYER_CONNECTION.get(entityPlayer);
             SEND_PACKET.invoke(playerConnection, packet);
