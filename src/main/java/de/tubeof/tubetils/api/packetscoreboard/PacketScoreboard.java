@@ -1,5 +1,8 @@
 package de.tubeof.tubetils.api.packetscoreboard;
 
+import de.tubeof.tubetils.api.packetscoreboard.events.PacketScoreboardDeleteEvent;
+import de.tubeof.tubetils.api.packetscoreboard.events.PacketScoreboardUpdateEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -143,6 +146,9 @@ public class PacketScoreboard {
 
         try {
             sendObjectivePacket(ObjectiveMode.UPDATE);
+
+            PacketScoreboardUpdateEvent packetScoreboardUpdateEvent = new PacketScoreboardUpdateEvent(this.player);
+            Bukkit.getPluginManager().callEvent(packetScoreboardUpdateEvent);
         } catch (ReflectiveOperationException e) {
             throw new RuntimeException(e);
         }
@@ -340,6 +346,9 @@ public class PacketScoreboard {
             }
 
             sendObjectivePacket(ObjectiveMode.REMOVE);
+
+            PacketScoreboardDeleteEvent packetScoreboardDeleteEvent = new PacketScoreboardDeleteEvent(this.player);
+            Bukkit.getPluginManager().callEvent(packetScoreboardDeleteEvent);
         } catch (ReflectiveOperationException e) {
             throw new RuntimeException(e);
         }
