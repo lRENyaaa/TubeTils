@@ -29,10 +29,12 @@
             <version>1.16.4-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <!--CraftBukkit API-->
         <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>craftbukkit</artifactId>
-            <version>1.12.2-R0.1-SNAPSHOT</version>
+            <groupId>com.github.azbh111</groupId>
+            <artifactId>craftbukkit-1.14.3</artifactId>
+            <version>R</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
