@@ -28,23 +28,20 @@ public class CacheContainer {
     public void registerCacheType(Class paramClass) {
         HashMap<String, Object> map = new HashMap<>();
 
-        CacheContainerRegisterTypeEvent cacheContainerRegisterTypeEvent = new CacheContainerRegisterTypeEvent(paramClass);
-        Bukkit.getPluginManager().callEvent(cacheContainerRegisterTypeEvent);
+        Bukkit.getPluginManager().callEvent(new CacheContainerRegisterTypeEvent(paramClass));
 
         objectHashMap.put(paramClass, map);
         if(data.isDebuggingEnabled()) ccs.sendMessage(TubeTils.getData().getPrefix() + "Created new Cache-Type: " + paramClass.getSimpleName() + " [" + cacheContainerName + "]");
     }
 
     public void add(Class paramClass, String valueName, Object content) {
-        CacheContainerAddEvent cacheContainerAddEvent = new CacheContainerAddEvent();
-        Bukkit.getPluginManager().callEvent(cacheContainerAddEvent);
+        Bukkit.getPluginManager().callEvent(new CacheContainerAddEvent());
 
         objectHashMap.get(paramClass).put(valueName, content);
     }
 
     public Object get(Class paramClass, String valueName) {
-        CacheContainerGetEvent cacheContainerGetEvent = new CacheContainerGetEvent();
-        Bukkit.getPluginManager().callEvent(cacheContainerGetEvent);
+        Bukkit.getPluginManager().callEvent(new CacheContainerGetEvent());
 
         return objectHashMap.get(paramClass).get(valueName);
     }

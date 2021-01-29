@@ -5,7 +5,7 @@ import org.bukkit.event.HandlerList;
 
 public class CacheContainerGetEvent extends Event {
 
-    private final HandlerList handlers = new HandlerList();
+    private HandlerList handlers = new HandlerList();
 
     public CacheContainerGetEvent() {}
 
