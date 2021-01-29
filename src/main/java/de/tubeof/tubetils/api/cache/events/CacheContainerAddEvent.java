@@ -5,13 +5,13 @@ import org.bukkit.event.HandlerList;
 
 public class CacheContainerAddEvent extends Event {
 
-    private HandlerList handlers = new HandlerList();
+    private final HandlerList handlers = new HandlerList();
 
     public CacheContainerAddEvent() {}
 
     @Override
     public HandlerList getHandlers() {
-        return null;
+        return this.handlers;
     }
 
 }

@@ -4,9 +4,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-/**
- * Called if a PacketScoreboard are updated.
- */
 public class PacketScoreboardUpdateEvent extends Event {
 
     private final HandlerList handlers = new HandlerList();
@@ -18,7 +15,7 @@ public class PacketScoreboardUpdateEvent extends Event {
 
     @Override
     public HandlerList getHandlers() {
-        return null;
+        return this.handlers;
     }
 
     public Player getPlayer() {

@@ -1,0 +1,7 @@
+name: TubeTils
+version: 1.0.1
+api-version: 1.14
+author: TUBEOF
+
+load: STARTUP
+main: de.tubeof.tubetils.main.TubeTils

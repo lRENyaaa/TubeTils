@@ -21,7 +21,7 @@ public class TitleSendEvent extends Event {
 
     @Override
     public HandlerList getHandlers() {
-        return null;
+        return this.handlers;
     }
 
     public Player getPlayer() {
