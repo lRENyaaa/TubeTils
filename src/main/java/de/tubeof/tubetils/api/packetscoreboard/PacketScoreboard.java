@@ -107,8 +107,7 @@ public class PacketScoreboard {
 
     /**
      * Creates a new PacketScoreboard.
-     *
-     * @param player the player the scoreboard is for
+     * @param player The player the scoreboard is for
      */
     public PacketScoreboard(String packetScoreboardName, Player player) {
         if (data.isDebuggingEnabled()) ccs.sendMessage(data.getPrefix() + "Created new PacketScoreboard with name: " + packetScoreboardName);
@@ -127,8 +126,7 @@ public class PacketScoreboard {
 
     /**
      * Get the scoreboard title.
-     *
-     * @return the scoreboard title
+     * @return scoreboard title
      */
     public String getTitle() {
         return title;
@@ -136,8 +134,7 @@ public class PacketScoreboard {
 
     /**
      * Update the scoreboard title.
-     *
-     * @param title the new scoreboard title
+     * @param title The new scoreboard title
      * @throws IllegalArgumentException if the title is longer than 32 chars on 1.12 or lower
      * @throws IllegalStateException    if {@link #delete()} was call before
      */
@@ -164,7 +161,6 @@ public class PacketScoreboard {
 
     /**
      * Get the scoreboard lines.
-     *
      * @return the scoreboard lines
      */
     public List<String> getLines() {
@@ -173,7 +169,6 @@ public class PacketScoreboard {
 
     /**
      * Get the specified scoreboard line.
-     *
      * @param line the line number
      * @return the line
      * @throws IndexOutOfBoundsException if the line is higher than {@code size}
@@ -186,7 +181,6 @@ public class PacketScoreboard {
 
     /**
      * Update a single scoreboard line.
-     *
      * @param line the line number
      * @param text the new line text
      * @throws IndexOutOfBoundsException if the line is higher than {@code size} + 1
@@ -220,7 +214,6 @@ public class PacketScoreboard {
 
     /**
      * Remove a scoreboard line.
-     *
      * @param line the line number
      */
     public void removeLine(int line) {
@@ -237,7 +230,6 @@ public class PacketScoreboard {
 
     /**
      * Update all the scoreboard lines.
-     *
      * @param lines the new lines
      * @throws IllegalArgumentException if one line is longer than 30 chars on 1.12 or lower
      * @throws IllegalStateException    if {@link #delete()} was call before
@@ -248,7 +240,6 @@ public class PacketScoreboard {
 
     /**
      * Update the lines of the scoreboard
-     *
      * @param lines the new scoreboard lines
      * @throws IllegalArgumentException if one line is longer than 30 chars on 1.12 or lower
      * @throws IllegalStateException    if {@link #delete()} was call before
@@ -310,7 +301,6 @@ public class PacketScoreboard {
 
     /**
      * Get the player who has the scoreboard.
-     *
      * @return current player for this PacketScoreboard
      */
     public Player getPlayer() {
@@ -319,7 +309,6 @@ public class PacketScoreboard {
 
     /**
      * Get the scoreboard id.
-     *
      * @return the id
      */
     public String getId() {
@@ -328,7 +317,6 @@ public class PacketScoreboard {
 
     /**
      * Get if the scoreboard is deleted.
-     *
      * @return true if the scoreboard is deleted
      */
     public boolean isDeleted() {
@@ -337,7 +325,6 @@ public class PacketScoreboard {
 
     /**
      * Get the scoreboard size (the number of lines).
-     *
      * @return the size
      */
     public int size() {
@@ -347,7 +334,6 @@ public class PacketScoreboard {
     /**
      * Delete this PacketScoreboard, and will remove the scoreboard for the associated player if he is online.
      * After this, all uses of {@link #updateLines} and {@link #updateTitle} will throws an {@link IllegalStateException}
-     *
      * @throws IllegalStateException if this was already call before
      */
     public void delete() {

@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 
 import java.lang.reflect.Constructor;
 
+@SuppressWarnings("ALL")
 public class TitleSender {
 
     private final Data data = TubeTils.getData();
@@ -19,6 +20,16 @@ public class TitleSender {
         if (data.isDebuggingEnabled()) ccs.sendMessage(data.getPrefix() + "Created new TitleSender with name: " + titleSenderName);
     }
 
+
+    /**
+     *
+     * @param player The player the title is for
+     * @param fadeIn The fade-in time in ticks
+     * @param stay The time for how long the title should be displayed in ticks
+     * @param fadeOut The fade-out time in ticks
+     * @param title Your Title
+     * @param subtitle Your Subtitle
+     */
     public void sendTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String title, String subtitle) {
         TitleSendEvent titleSendEvent = new TitleSendEvent(player, title, subtitle);
         Bukkit.getPluginManager().callEvent(titleSendEvent);
@@ -59,6 +70,10 @@ public class TitleSender {
         }
     }
 
+    /**
+     * Sends an empty title to a player
+     * @param player The player the title is for
+     */
     public void clearTitle(Player player) {
         TitleClearEvent titleClearEvent = new TitleClearEvent(player);
         Bukkit.getPluginManager().callEvent(titleClearEvent);

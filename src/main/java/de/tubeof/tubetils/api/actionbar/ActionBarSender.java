@@ -11,6 +11,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+@SuppressWarnings("ALL")
 public class ActionBarSender {
 
     private final Data data = TubeTils.getData();
@@ -80,6 +81,13 @@ public class ActionBarSender {
         }
     }
 
+
+    /**
+     * Sends a message to the player as an actionbar
+     * @param player The player the actionbar is for
+     * @param message Your message
+     * @param duration The duration of how long the action bar is displayed
+     */
     public void sendActionBar(Player player, String message, Integer duration) {
         sendActionBar(player, message);
 
@@ -101,11 +109,19 @@ public class ActionBarSender {
         }
     }
 
+    /** Sends a message to all players as an action bar
+     * @param message Your message
+     */
     public void sendActionBarToAllPlayers(String message) {
         for (Player players : Bukkit.getOnlinePlayers())
             sendActionBar(players, message);
     }
 
+    /**
+     * Sends a message to all players as an action bar
+     * @param message Your message
+     * @param duration The duration of how long the action bar is displayed
+     */
     public void sendActionBarToAllPlayers(String message, int duration) {
         for (Player players : Bukkit.getOnlinePlayers())
             sendActionBar(players, message, duration);
