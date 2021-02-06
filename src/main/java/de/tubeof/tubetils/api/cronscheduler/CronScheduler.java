@@ -30,7 +30,7 @@ public class CronScheduler {
      *
      * @param name
      * @param group
-     * @param cronTrigger
+     * @param cronTrigger https://www.freeformatter.com/cron-expression-generator-quartz.html
      * @param cronjob
      * @throws SchedulerException
      */
