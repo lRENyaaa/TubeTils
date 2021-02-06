@@ -1,7 +1,7 @@
-package de.tubeof.tubetils.mail;
+package de.tubeof.tubetils.api.mail;
 
 import de.tubeof.tubetils.data.Data;
-import de.tubeof.tubetils.mail.utils.MailSendException;
+import de.tubeof.tubetils.api.mail.utils.MailSendException;
 import de.tubeof.tubetils.main.TubeTils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;

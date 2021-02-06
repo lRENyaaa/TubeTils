@@ -1,4 +1,4 @@
-package de.tubeof.tubetils.mail.utils;
+package de.tubeof.tubetils.api.mail.utils;
 
 public class MailSendException extends Exception {
 
