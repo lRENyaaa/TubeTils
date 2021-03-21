@@ -15,11 +15,13 @@ public class UpdateChecker {
     private Integer resourceId;
     private Plugin plugin;
     private ApiMethode apiMethode;
+    private Boolean isPremium;
 
-    public UpdateChecker(Integer resourceId, Plugin plugin, ApiMethode apiMethode) throws IOException {
+    public UpdateChecker(Integer resourceId, Plugin plugin, ApiMethode apiMethode, Boolean isPremium) throws IOException {
         this.resourceId = resourceId;
         this.plugin = plugin;
         this.apiMethode = apiMethode;
+        this.isPremium = isPremium;
 
         start();
     }
@@ -51,7 +53,7 @@ public class UpdateChecker {
             if(latestVersion == null) {
                 throw new NullPointerException("API returned NULL as value");
             }
-            latestVersionId = jsonObject.getInt("id");
+            if(!isPremium) latestVersionId = jsonObject.getInt("id");
 
             if(!getLatestVersion().equalsIgnoreCase(plugin.getDescription().getVersion())) outdated = true;
             else outdated = false;
@@ -88,11 +90,16 @@ public class UpdateChecker {
         return latestVersion;
     }
 
+    public String getCurrentVersion() {
+        return plugin.getDescription().getVersion();
+    }
+
     public Boolean isOutdated() {
         return outdated;
     }
 
     public String getDownloadUrl() {
+        if(isPremium) return "https://www.spigotmc.org/resources/" + resourceId;
         if(latestVersionId == null) {
             return "https://www.spigotmc.org/resources/" + resourceId + "/history";
         } else {
