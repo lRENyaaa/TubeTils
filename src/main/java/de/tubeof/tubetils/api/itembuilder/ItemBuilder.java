@@ -141,12 +141,12 @@ public class ItemBuilder {
 
     /**
      * Deprecated! Use dynamicLorePlayerSkullItem instead please.
-     *
-     * @param skullOwnerName
-     * @param name
-     * @param lore1
-     * @param lore2
-     * @return
+     * Creates and returns an SkullItemStack with 2 lores.
+     * @param skullOwnerName The player name, which current skin is set for the head
+     * @param name Name of the ItemStack. Colorcodes can be used
+     * @param lore1 The first lore
+     * @param lore2 The second lore
+     * @return The final ItemStack
      */
     @Deprecated
     public ItemStack loreSkullItem(String skullOwnerName, String name, String lore1, String lore2) {
@@ -164,12 +164,12 @@ public class ItemBuilder {
     }
 
     /**
-     *
-     * @param skullOwnerName
-     * @param amount
-     * @param name
-     * @param lores
-     * @return
+     * Creates and returns an SkullItemStack with an arbitrary number of lores.
+     * @param skullOwnerName The  player name, which current skin is set for the head
+     * @param amount Amount of Items
+     * @param name Name of the ItemStack. Colorcodes can be used
+     * @param lores An ArrayList with the type String, in which the lores are passed
+     * @return The final ItemStack
      */
     public ItemStack dynamicLorePlayerSkullItem(String skullOwnerName, int amount, String name, ArrayList<String> lores) {
         ItemStack item = new ItemStack(Material.PLAYER_HEAD, amount, (short)3);
@@ -182,6 +182,11 @@ public class ItemBuilder {
         return item;
     }
 
+    /**
+     * Creates and returns an SkullItemStack with a Skin from the provided Mojang-Texture-URL.
+     * @param url The Mojang-Texture-URL
+     * @return The final ItemStack
+     */
     public ItemStack getSkullFromURL(String url) {
         ItemStack head = new ItemStack(Material.PLAYER_HEAD, 1, (short)3);
         if(url.isEmpty())return head;
@@ -202,14 +207,20 @@ public class ItemBuilder {
         return head;
     }
 
-    public ItemStack editExistItem(ItemStack existItem, String Name, String Lore1, String Lore2) {
-        ItemStack item = existItem.clone();
+    /**
+     * Edits the specified ItemStack, changing the data to the specified.
+     * @param itemStack The ItemStack, which should be edited
+     * @param amount Amount of Items
+     * @param name Name of the ItemStack. Colorcodes can be used
+     * @param lores An ArrayList with the type String, in which the lores are passed
+     * @return The final ItemStack
+     */
+    public ItemStack editItemStack(ItemStack itemStack, int amount, String name, ArrayList<String> lores) {
+        ItemStack item = itemStack.clone();
+        item.setAmount(amount);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(Name);
-        ArrayList<String> Lore = new ArrayList<>();
-        Lore.add(Lore1);
-        Lore.add(Lore2);
-        meta.setLore(Lore);
+        meta.setDisplayName(name);
+        meta.setLore(lores);
         item.setItemMeta(meta);
         return item;
     }
