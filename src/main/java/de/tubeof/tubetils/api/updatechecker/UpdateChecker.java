@@ -32,8 +32,8 @@ public class UpdateChecker {
     private Boolean outdated;
 
     public void start() throws IOException {
-        if(apiMethode.equals(ApiMethode.API_POOL_TUBEOF)) {
-            apiUrl = new URL("https://api.pool.tubeof.de/v1/versioncheck/getLatestVersion.php?id=" + resourceId);
+        if(apiMethode.equals(ApiMethode.YOURGAMESPACE)) {
+            apiUrl = new URL("https://api.pool.yourgamespace.com/v1/versioncheck/getLatestVersion.php?id=" + resourceId);
 
             HttpURLConnection urlConnection = (HttpURLConnection) getApiUrl().openConnection();
             urlConnection.setRequestProperty("User-Agent", "TubeApiBridgeConnector");
