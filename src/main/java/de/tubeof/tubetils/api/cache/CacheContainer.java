@@ -25,6 +25,10 @@ public class CacheContainer {
 
     private final HashMap<Class, HashMap<String, Object>> objectHashMap = new HashMap<>();
 
+    /**
+     * Register a new DataType
+     * @param paramClass DataType Class. For example: String.class
+     */
     public void registerCacheType(Class paramClass) {
         HashMap<String, Object> map = new HashMap<>();
 
@@ -35,6 +39,12 @@ public class CacheContainer {
         if(data.isDebuggingEnabled()) ccs.sendMessage(TubeTils.getData().getPrefix() + "Created new Cache-Type: " + paramClass.getSimpleName() + " [" + cacheContainerName + "]");
     }
 
+    /**
+     * Adds a new value to the cache instance
+     * @param paramClass The DataType Class
+     * @param valueName The name under which the value can be retrieved later
+     * @param content The value, which should be cached
+     */
     public void add(Class paramClass, String valueName, Object content) {
         CacheContainerAddEvent cacheContainerAddEvent = new CacheContainerAddEvent();
         Bukkit.getPluginManager().callEvent(cacheContainerAddEvent);
@@ -42,6 +52,12 @@ public class CacheContainer {
         objectHashMap.get(paramClass).put(valueName, content);
     }
 
+    /**
+     * Get a cache value
+     * @param paramClass The DataType Class
+     * @param valueName The name under which the value was cached
+     * @return The cached value
+     */
     public Object get(Class paramClass, String valueName) {
         CacheContainerGetEvent cacheContainerGetEvent = new CacheContainerGetEvent();
         Bukkit.getPluginManager().callEvent(cacheContainerGetEvent);

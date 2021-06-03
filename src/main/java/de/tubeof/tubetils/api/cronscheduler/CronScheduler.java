@@ -28,10 +28,10 @@ public class CronScheduler {
 
     /**
      *
-     * @param name
-     * @param group
-     * @param cronTrigger https://www.freeformatter.com/cron-expression-generator-quartz.html
-     * @param cronjob
+     * @param name Name of the cronjob
+     * @param group Group of the cronjob
+     * @param cronTrigger Cronjob Entry https://www.freeformatter.com/cron-expression-generator-quartz.html
+     * @param cronjob Job, which will be executed on trigger
      * @throws SchedulerException
      */
     public void addCronjob(String name, String group, String cronTrigger, Class<? extends Job> cronjob) throws SchedulerException {

@@ -65,12 +65,12 @@ public class MailSender {
     }
 
     /**
-     *
-     * @param senderMail
-     * @param senderName
-     * @param receiverMail
-     * @param subject
-     * @param message
+     * Sends a mail in HTML Format
+     * @param senderMail Sender-Mail
+     * @param senderName Sender-Name
+     * @param receiverMail Receiver-Mail
+     * @param subject The subject
+     * @param message HTML Message Content
      * @throws MessagingException
      * @throws UnsupportedEncodingException
      * @throws MailSendException

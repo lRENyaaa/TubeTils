@@ -32,6 +32,11 @@ public class ActionBarSender {
         }
     }
 
+    /**
+     * Sends a message to the player as an action bar
+     * @param player The player
+     * @param message Message, which will be displayed
+     */
     private void sendActionBar(Player player, String message) {
         ActionBarMessageEvent actionBarMessageEvent = new ActionBarMessageEvent(player, message);
         Bukkit.getPluginManager().callEvent(actionBarMessageEvent);

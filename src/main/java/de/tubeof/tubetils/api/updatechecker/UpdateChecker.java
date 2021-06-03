@@ -82,22 +82,42 @@ public class UpdateChecker {
         }
     }
 
+    /**
+     *
+     * @return Returns the API-URL which was used
+     */
     public URL getApiUrl() {
         return apiUrl;
     }
 
+    /**
+     *
+     * @return Returns the latest version string of the given plugin
+     */
     public String getLatestVersion() {
         return latestVersion;
     }
 
+    /**
+     *
+     * @return Returns the current installed version string of the given plugin
+     */
     public String getCurrentVersion() {
         return plugin.getDescription().getVersion();
     }
 
+    /**
+     *
+     * @return Returns true if the current version is not equal to the installed version of the given plugin
+     */
     public Boolean isOutdated() {
         return outdated;
     }
 
+    /**
+     *
+     * @return Returns the download URL for users. Useful for ingame/console notifications.
+     */
     public String getDownloadUrl() {
         if(isPremium) return "https://www.spigotmc.org/resources/" + resourceId;
         if(latestVersionId == null) {
