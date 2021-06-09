@@ -17,13 +17,13 @@ public class UpdateChecker {
     private ApiMethode apiMethode;
     private Boolean isPremium;
 
-    public UpdateChecker(Integer resourceId, Plugin plugin, ApiMethode apiMethode, Boolean isPremium) throws IOException {
+    public UpdateChecker(Integer resourceId, Plugin plugin, ApiMethode apiMethode, boolean isPremium, boolean autoCheck) throws IOException {
         this.resourceId = resourceId;
         this.plugin = plugin;
         this.apiMethode = apiMethode;
         this.isPremium = isPremium;
 
-        start();
+        if(autoCheck) check();
     }
 
     private URL apiUrl;
@@ -31,7 +31,7 @@ public class UpdateChecker {
     private Integer latestVersionId;
     private Boolean outdated;
 
-    public void start() throws IOException {
+    public void check() throws IOException {
         if(apiMethode.equals(ApiMethode.YOURGAMESPACE)) {
             apiUrl = new URL("https://api.pool.yourgamespace.com/v1/versioncheck/getLatestVersion.php?id=" + resourceId);
 

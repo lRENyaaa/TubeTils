@@ -27,24 +27,6 @@ public class CacheContainer {
         this.cacheContainerName = cacheContainerName;
     }
 
-    /**
-     * Creates a new instance, with default value
-     * @param cacheContainerName Name of instance
-     * @param paramClass DataType of default value
-     * @param valueName Value name of default value
-     * @param content Content of default value
-     */
-    public CacheContainer(String cacheContainerName, Class paramClass, String valueName, String content) {
-        if(data.isDebuggingEnabled()) {
-            ccs.sendMessage(TubeTils.getData().getPrefix() + "Created new CacheContainer with name: " + cacheContainerName);
-
-            registerCacheType(paramClass);
-            add(paramClass, valueName, content);
-            ccs.sendMessage(TubeTils.getData().getPrefix() + "Added default value with type " + paramClass + " and name " + valueName);
-        }
-        this.cacheContainerName = cacheContainerName;
-    }
-
     private final HashMap<Class, HashMap<String, Object>> objectHashMap = new HashMap<>();
 
     /**
