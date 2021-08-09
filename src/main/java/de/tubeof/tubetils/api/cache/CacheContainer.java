@@ -10,13 +10,13 @@ import org.bukkit.command.ConsoleCommandSender;
 
 import java.util.HashMap;
 
-@SuppressWarnings("ALL")
+@SuppressWarnings({"rawtypes", "unused"})
 public class CacheContainer {
 
     private final Data data = TubeTils.getData();
     private final ConsoleCommandSender ccs = Bukkit.getConsoleSender();
 
-    private String cacheContainerName;
+    private final String cacheContainerName;
 
     /**
      * Creates a new instance
@@ -35,11 +35,13 @@ public class CacheContainer {
      */
     public void registerCacheType(Class paramClass) {
         HashMap<String, Object> map = new HashMap<>();
-
-        CacheContainerRegisterTypeEvent cacheContainerRegisterTypeEvent = new CacheContainerRegisterTypeEvent(paramClass);
-        Bukkit.getPluginManager().callEvent(cacheContainerRegisterTypeEvent);
-
         objectHashMap.put(paramClass, map);
+
+        Bukkit.getScheduler().runTask(TubeTils.getInstance(), () -> {
+            CacheContainerRegisterTypeEvent cacheContainerRegisterTypeEvent = new CacheContainerRegisterTypeEvent(paramClass);
+            Bukkit.getPluginManager().callEvent(cacheContainerRegisterTypeEvent);
+        });
+
         if(data.isDebuggingEnabled()) ccs.sendMessage(TubeTils.getData().getPrefix() + "Created new Cache-Type: " + paramClass.getSimpleName() + " [" + cacheContainerName + "]");
     }
 
@@ -50,10 +52,12 @@ public class CacheContainer {
      * @param content The value, which should be cached
      */
     public void add(Class paramClass, String valueName, Object content) {
-        CacheContainerAddEvent cacheContainerAddEvent = new CacheContainerAddEvent();
-        Bukkit.getPluginManager().callEvent(cacheContainerAddEvent);
-
         objectHashMap.get(paramClass).put(valueName, content);
+
+        Bukkit.getScheduler().runTask(TubeTils.getInstance(), () -> {
+            CacheContainerAddEvent cacheContainerAddEvent = new CacheContainerAddEvent();
+            Bukkit.getPluginManager().callEvent(cacheContainerAddEvent);
+        });
     }
 
     /**
@@ -63,8 +67,10 @@ public class CacheContainer {
      * @return The cached value
      */
     public Object get(Class paramClass, String valueName) {
-        CacheContainerGetEvent cacheContainerGetEvent = new CacheContainerGetEvent();
-        Bukkit.getPluginManager().callEvent(cacheContainerGetEvent);
+        Bukkit.getScheduler().runTask(TubeTils.getInstance(), () -> {
+            CacheContainerGetEvent cacheContainerGetEvent = new CacheContainerGetEvent();
+            Bukkit.getPluginManager().callEvent(cacheContainerGetEvent);
+        });
 
         return objectHashMap.get(paramClass).get(valueName);
     }
