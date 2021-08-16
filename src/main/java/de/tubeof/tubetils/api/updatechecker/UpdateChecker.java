@@ -107,6 +107,8 @@ public class UpdateChecker {
 
             if(!getLatestVersion().equalsIgnoreCase(plugin.getDescription().getVersion())) outdated = true;
             else outdated = false;
+
+            wasSuccessful = true;
         }
         else if(apiMethode.equals(ApiMethode.SPIGOTMCORG)) {
             apiUrl = new URL("https://api.spigotmc.org/legacy/update.php?resource=" + resourceId);
@@ -150,6 +152,8 @@ public class UpdateChecker {
 
             if(!getLatestVersion().equalsIgnoreCase(plugin.getDescription().getVersion())) outdated = true;
             else outdated = false;
+
+            wasSuccessful = true;
         } else {
             throw new NullPointerException("The defined API-Method could not be found!");
         }
