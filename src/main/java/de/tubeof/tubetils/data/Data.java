@@ -4,6 +4,7 @@ public class Data {
 
     public Data() {}
 
+    private final String CI_BUILD = "${ci.buildId}";
     private String PREFIX = "[TubeTils] ";
     private Boolean DEBUG = false;
 
@@ -13,6 +14,10 @@ public class Data {
 
     public String getPrefix() {
         return PREFIX;
+    }
+
+    public String getCiBuild() {
+        return CI_BUILD;
     }
 
     public void setDebugging(Boolean paramBoolean) {

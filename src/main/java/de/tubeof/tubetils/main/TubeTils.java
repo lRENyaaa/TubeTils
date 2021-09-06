@@ -15,6 +15,7 @@ public class TubeTils extends JavaPlugin {
     @Override
     public void onEnable() {
         ccs.sendMessage(TubeTils.getData().getPrefix() + "The Plugin will be activated ...");
+        ccs.sendMessage(TubeTils.getData().getPrefix() + "Build-ID: " + TubeTils.getData().getCiBuild());
 
         setInstances();
 
