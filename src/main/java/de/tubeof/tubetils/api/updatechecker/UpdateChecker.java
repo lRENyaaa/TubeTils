@@ -160,17 +160,36 @@ public class UpdateChecker {
     }
 
     private void onlineCheck() {
-        boolean google = false;
-        boolean cloudflare = false;
+        boolean amionline = false;
+        boolean yourgamespace = false;
 
         try {
-            google = InetAddress.getByName("8.8.8.8").isReachable(5000);
-            cloudflare = InetAddress.getByName("1.1.1.1").isReachable(5000);
+            URL url = new URL("http://amionline.net/");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestProperty("User-Agent", "TubeTilsManagerCheck");
+            connection.setRequestProperty("Header-Token", "SD998FS0FG07");
+            connection.setRequestMethod("HEAD");
+            connection.setConnectTimeout(5000);
+            connection.setReadTimeout(5000);
+            amionline = true;
         } catch (IOException exception) {
-            //Only catch
+            // Just catch
         }
 
-        isOnline = google || cloudflare;
+        try {
+            URL url = new URL("https://api.yourgamespace.com/");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestProperty("User-Agent", "TubeTilsManagerCheck");
+            connection.setRequestProperty("Header-Token", "SD998FS0FG07");
+            connection.setRequestMethod("HEAD");
+            connection.setConnectTimeout(5000);
+            connection.setReadTimeout(5000);
+            yourgamespace = true;
+        } catch (IOException exception) {
+            // Just catch
+        }
+
+        isOnline = amionline || yourgamespace;
     }
 
     /**
