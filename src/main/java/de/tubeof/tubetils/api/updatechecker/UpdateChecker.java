@@ -11,17 +11,20 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.*;
+import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
+import java.net.URL;
 
+@SuppressWarnings({"unused", "FieldCanBeLocal", "ConstantConditions"})
 public class UpdateChecker {
 
     private final Data data = TubeTils.getData();
     private final ConsoleCommandSender ccs = Bukkit.getConsoleSender();
 
-    private Integer resourceId;
-    private Plugin plugin;
-    private ApiMethode apiMethode;
-    private Boolean isPremium;
+    private final Integer resourceId;
+    private final Plugin plugin;
+    private final ApiMethode apiMethode;
+    private final Boolean isPremium;
 
     public UpdateChecker(String updateCheckerName, Integer resourceId, Plugin plugin, ApiMethode apiMethode, boolean isPremium, boolean autoCheck) throws IOException {
         if(data.isDebuggingEnabled()) ccs.sendMessage(TubeTils.getData().getPrefix() + "Created new UpdateChecker with name: " + updateCheckerName);
@@ -92,7 +95,7 @@ public class UpdateChecker {
 
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             String inputLine;
-            StringBuffer response = new StringBuffer();
+            StringBuilder response = new StringBuilder();
             while ((inputLine = bufferedReader.readLine()) != null) {
                 response.append(inputLine);
             }
@@ -105,8 +108,7 @@ public class UpdateChecker {
             }
             if(!isPremium) latestVersionId = jsonObject.getInt("id");
 
-            if(!getLatestVersion().equalsIgnoreCase(plugin.getDescription().getVersion())) outdated = true;
-            else outdated = false;
+            outdated = !getLatestVersion().equalsIgnoreCase(plugin.getDescription().getVersion());
 
             wasSuccessful = true;
         }
@@ -141,17 +143,16 @@ public class UpdateChecker {
 
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             String inputLine;
-            StringBuffer response = new StringBuffer();
+            StringBuilder response = new StringBuilder();
             while ((inputLine = bufferedReader.readLine()) != null) {
                 response.append(inputLine);
             }
             bufferedReader.close();
 
-            latestVersion = inputLine;
+            latestVersion = response.toString();
             if(latestVersion == null) throw new NullPointerException("API returned NULL as value");
 
-            if(!getLatestVersion().equalsIgnoreCase(plugin.getDescription().getVersion())) outdated = true;
-            else outdated = false;
+            outdated = !getLatestVersion().equalsIgnoreCase(plugin.getDescription().getVersion());
 
             wasSuccessful = true;
         } else {
