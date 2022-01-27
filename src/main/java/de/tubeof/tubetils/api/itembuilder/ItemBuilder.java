@@ -16,7 +16,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.UUID;
 
-@SuppressWarnings({"FieldCanBeLocal", "unused", "deprecation"})
+@SuppressWarnings({"FieldCanBeLocal", "unused", "deprecation", "UnnecessaryLocalVariable"})
 public class ItemBuilder {
 
     private final Data data = TubeTils.getData();
@@ -58,6 +58,33 @@ public class ItemBuilder {
         assert meta != null;
         meta.setDisplayName(name);
         item.setItemMeta(meta);
+        return item;
+    }
+
+    /**
+     * Will create and return a normal ItemStack.
+     * @param material The material
+     * @param amount Amount of Items
+     * @param name Name of the ItemStack. Colorcodes can be used
+     * @return The final ItemStack
+     */
+    public ItemStack simpleItemStack(Material material, int amount, String name) {
+        ItemStack item = new ItemStack(material, amount);
+        ItemMeta meta = item.getItemMeta();
+        assert meta != null;
+        meta.setDisplayName(name);
+        item.setItemMeta(meta);
+        return item;
+    }
+
+    /**
+     * Will create and return a normal ItemStack.
+     * @param material The material
+     * @param amount Amount of Items
+     * @return The final ItemStack
+     */
+    public ItemStack simpleItemStack(Material material, int amount) {
+        ItemStack item = new ItemStack(material, amount);
         return item;
     }
 
@@ -195,8 +222,9 @@ public class ItemBuilder {
         GameProfile profile = new GameProfile(UUID.randomUUID(), null);
         byte[] encodedData = Base64.encodeBase64(String.format("{textures:{SKIN:{url:\"%s\"}}}", url).getBytes());
         profile.getProperties().put("textures", new Property("textures", new String(encodedData)));
-        Field profileField = null;
+        Field profileField;
         try {
+            assert headMeta != null;
             profileField = headMeta.getClass().getDeclaredField("profile");
             profileField.setAccessible(true);
             profileField.set(headMeta, profile);
@@ -219,6 +247,7 @@ public class ItemBuilder {
         ItemStack item = itemStack.clone();
         item.setAmount(amount);
         ItemMeta meta = item.getItemMeta();
+        assert meta != null;
         meta.setDisplayName(name);
         meta.setLore(lores);
         item.setItemMeta(meta);
