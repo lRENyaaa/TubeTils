@@ -69,7 +69,8 @@ public class ItemBuilder {
      * @return The final ItemStack
      */
     public ItemStack simpleItemStack(Material material, int amount, String name) {
-        ItemStack item = new ItemStack(material, amount);
+        ItemStack item = new ItemStack(material);
+        item.setAmount(amount);
         ItemMeta meta = item.getItemMeta();
         assert meta != null;
         meta.setDisplayName(name);
@@ -84,7 +85,8 @@ public class ItemBuilder {
      * @return The final ItemStack
      */
     public ItemStack simpleItemStack(Material material, int amount) {
-        ItemStack item = new ItemStack(material, amount);
+        ItemStack item = new ItemStack(material);
+        item.setAmount(amount);
         return item;
     }
 
