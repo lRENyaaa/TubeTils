@@ -5,7 +5,7 @@ import org.bukkit.event.HandlerList;
 
 public class CacheContainerRegisterTypeEvent extends Event {
 
-    private final HandlerList handlers = new HandlerList();
+    private static final HandlerList handlers = new HandlerList();
     private final  Class typeClass;
 
     public CacheContainerRegisterTypeEvent(Class typeClass) {
@@ -21,4 +21,7 @@ public class CacheContainerRegisterTypeEvent extends Event {
         return this.typeClass;
     }
 
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
 }

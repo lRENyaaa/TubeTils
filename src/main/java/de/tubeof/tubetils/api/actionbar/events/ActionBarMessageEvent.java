@@ -7,7 +7,7 @@ import org.bukkit.event.HandlerList;
 @SuppressWarnings("ALL")
 public class ActionBarMessageEvent extends Event {
 
-    private final HandlerList handlers = new HandlerList();
+    private static final HandlerList handlers = new HandlerList();
     private final Player player;
     private String message;
     private Boolean cancelled;
@@ -41,5 +41,9 @@ public class ActionBarMessageEvent extends Event {
 
     public void setCancelled(boolean cancelled) {
         this.cancelled = cancelled;
+    }
+
+    public static HandlerList getHandlerList() {
+        return handlers;
     }
 }
