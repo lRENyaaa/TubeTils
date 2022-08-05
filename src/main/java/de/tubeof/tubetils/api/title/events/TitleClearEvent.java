@@ -6,7 +6,7 @@ import org.bukkit.event.HandlerList;
 
 public class TitleClearEvent extends Event {
 
-    private final HandlerList handlers = new HandlerList();
+    private static final HandlerList handlers = new HandlerList();
     private final Player player;
     private Boolean cancelled;
 
@@ -32,4 +32,7 @@ public class TitleClearEvent extends Event {
         this.cancelled = cancelled;
     }
 
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
 }

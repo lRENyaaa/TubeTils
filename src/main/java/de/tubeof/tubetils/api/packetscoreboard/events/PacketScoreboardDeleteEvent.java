@@ -6,7 +6,7 @@ import org.bukkit.event.HandlerList;
 
 public class PacketScoreboardDeleteEvent extends Event {
 
-    private final HandlerList handlers = new HandlerList();
+    private static final HandlerList handlers = new HandlerList();
     private final Player player;
 
     public PacketScoreboardDeleteEvent(Player player) {
@@ -22,4 +22,7 @@ public class PacketScoreboardDeleteEvent extends Event {
         return this.player;
     }
 
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
 }
